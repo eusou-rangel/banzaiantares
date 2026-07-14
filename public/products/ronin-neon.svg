@@ -1,0 +1,8 @@
+<svg width="720" height="820" viewBox="0 0 720 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="820" rx="32" fill="#08152B"/>
+  <path d="M152 154L256 96H464L568 154L523 278L465 252V700H255V252L197 278L152 154Z" fill="#111827" stroke="#39FF88" stroke-width="8"/>
+  <circle cx="360" cy="392" r="128" fill="#0B1830" stroke="#8D4DFF" stroke-width="10"/>
+  <path d="M273 407C318 339 403 315 454 363C419 421 334 460 273 407Z" fill="#39FF88"/>
+  <path d="M318 330L411 454" stroke="#D7FF3F" stroke-width="14" stroke-linecap="round"/>
+  <text x="235" y="621" fill="#F6FFF9" font-family="Arial Black, Arial" font-size="46">RONIN</text>
+</svg>

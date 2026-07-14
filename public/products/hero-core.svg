@@ -1,0 +1,7 @@
+<svg width="720" height="820" viewBox="0 0 720 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="820" rx="32" fill="#06111F"/>
+  <path d="M152 154L256 96H464L568 154L523 278L465 252V700H255V252L197 278L152 154Z" fill="#0C1731" stroke="#D7FF3F" stroke-width="8"/>
+  <path d="M360 292L474 360L432 512H288L246 360L360 292Z" fill="#8D4DFF"/>
+  <path d="M360 328L416 456H304L360 328Z" fill="#39FF88"/>
+  <text x="251" y="620" fill="#F6FFF9" font-family="Arial Black, Arial" font-size="42">HERO</text>
+</svg>

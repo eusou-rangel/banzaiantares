@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: #06111f;
+  --panel: #0b1830;
+  --line: rgba(255, 255, 255, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 16% 12%, rgba(57, 255, 136, 0.16), transparent 28rem),
+    radial-gradient(circle at 82% 0%, rgba(141, 77, 255, 0.18), transparent 26rem),
+    linear-gradient(180deg, #06111f 0%, #09172b 45%, #06111f 100%);
+  color: #f6fff9;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.container-page {
+  width: min(1180px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.grid-mask {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.focus-ring {
+  @apply outline-none ring-2 ring-electric-green/70 ring-offset-2 ring-offset-ink;
+}
+
+.admin-input {
+  @apply w-full rounded-md border border-white/10 bg-white/[0.06] px-3 py-2 text-sm text-white outline-none placeholder:text-white/35 focus:border-electric-green/70;
+}

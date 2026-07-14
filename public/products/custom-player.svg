@@ -1,0 +1,8 @@
+<svg width="720" height="820" viewBox="0 0 720 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="820" rx="32" fill="#08152B"/>
+  <path d="M152 154L256 96H464L568 154L523 278L465 252V700H255V252L197 278L152 154Z" fill="#111827" stroke="#39FF88" stroke-width="8"/>
+  <rect x="244" y="340" width="232" height="180" rx="18" fill="#06111F" stroke="#8D4DFF" stroke-width="8"/>
+  <text x="282" y="411" fill="#D7FF3F" font-family="Arial Black, Arial" font-size="34">PLAYER</text>
+  <path d="M294 458H426" stroke="#39FF88" stroke-width="12" stroke-linecap="round"/>
+  <text x="242" y="620" fill="#F6FFF9" font-family="Arial Black, Arial" font-size="35">CUSTOM</text>
+</svg>

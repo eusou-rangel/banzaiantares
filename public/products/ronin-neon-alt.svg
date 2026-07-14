@@ -1,0 +1,7 @@
+<svg width="720" height="820" viewBox="0 0 720 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="820" rx="32" fill="#120B2E"/>
+  <path d="M158 158L260 98H460L562 158L516 276L462 248V704H258V248L204 276L158 158Z" fill="#18233F" stroke="#8D4DFF" stroke-width="8"/>
+  <path d="M246 402C296 306 422 306 474 402C422 500 296 500 246 402Z" fill="#39FF88"/>
+  <circle cx="360" cy="402" r="54" fill="#06111F"/>
+  <text x="229" y="616" fill="#D7FF3F" font-family="Arial Black, Arial" font-size="42">NEON</text>
+</svg>

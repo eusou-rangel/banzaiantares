@@ -1,0 +1,9 @@
+<svg width="720" height="820" viewBox="0 0 720 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="820" rx="32" fill="#06111F"/>
+  <path d="M152 154L256 96H464L568 154L523 278L465 252V700H255V252L197 278L152 154Z" fill="#0C1731" stroke="#39FF88" stroke-width="8"/>
+  <rect x="260" y="358" width="200" height="132" rx="18" fill="#D7FF3F"/>
+  <path d="M260 408H460" stroke="#06111F" stroke-width="14"/>
+  <path d="M340 358H380V490H340V358Z" fill="#8D4DFF"/>
+  <circle cx="360" cy="424" r="20" fill="#06111F"/>
+  <text x="266" y="620" fill="#F6FFF9" font-family="Arial Black, Arial" font-size="42">LOOT</text>
+</svg>

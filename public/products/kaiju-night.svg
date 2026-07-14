@@ -1,0 +1,8 @@
+<svg width="720" height="820" viewBox="0 0 720 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="820" rx="32" fill="#120B2E"/>
+  <path d="M152 154L256 96H464L568 154L523 278L465 252V700H255V252L197 278L152 154Z" fill="#111827" stroke="#8D4DFF" stroke-width="8"/>
+  <path d="M283 500C274 415 288 337 362 302C436 337 450 415 437 500H283Z" fill="#39FF88"/>
+  <path d="M322 389H338M386 389H402" stroke="#06111F" stroke-width="14" stroke-linecap="round"/>
+  <path d="M294 522H426" stroke="#D7FF3F" stroke-width="12" stroke-linecap="round"/>
+  <text x="251" y="620" fill="#F6FFF9" font-family="Arial Black, Arial" font-size="42">KAIJU</text>
+</svg>

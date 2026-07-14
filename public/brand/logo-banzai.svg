@@ -1,0 +1,11 @@
+<svg width="320" height="96" viewBox="0 0 320 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="96" rx="16" fill="#06111F"/>
+  <path d="M34 64L52 20H73L91 64H75L72 56H53L50 64H34Z" fill="#39FF88"/>
+  <path d="M58 44H67L62.5 31L58 44Z" fill="#06111F"/>
+  <path d="M101 22H122C134 22 140 28 140 37C140 43 137 47 132 49C139 51 143 56 143 63C143 73 136 80 123 80H101V22Z" fill="#8D4DFF"/>
+  <path d="M117 34V45H122C126 45 128 43 128 40C128 36 126 34 122 34H117ZM117 56V68H124C128 68 131 66 131 62C131 58 128 56 124 56H117Z" fill="#06111F"/>
+  <text x="154" y="47" fill="#F6FFF9" font-family="Arial Black, Arial, sans-serif" font-size="29" letter-spacing="0">BANZAI</text>
+  <text x="156" y="72" fill="#D7FF3F" font-family="Arial Black, Arial, sans-serif" font-size="23" letter-spacing="0">GEEK</text>
+  <path d="M294 18L304 28L294 38L284 28L294 18Z" fill="#D7FF3F"/>
+  <path d="M281 58H305V65H281V58Z" fill="#39FF88"/>
+</svg>

@@ -1,0 +1,7 @@
+<svg width="720" height="820" viewBox="0 0 720 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="820" rx="32" fill="#120B2E"/>
+  <path d="M152 154L256 96H464L568 154L523 278L465 252V700H255V252L197 278L152 154Z" fill="#101827" stroke="#39FF88" stroke-width="8"/>
+  <rect x="240" y="338" width="240" height="148" rx="12" fill="#06111F" stroke="#D7FF3F" stroke-width="8"/>
+  <path d="M284 382H436M284 424H396" stroke="#8D4DFF" stroke-width="12" stroke-linecap="round"/>
+  <text x="242" y="610" fill="#F6FFF9" font-family="Arial Black, Arial" font-size="36">EPISODE 1</text>
+</svg>
