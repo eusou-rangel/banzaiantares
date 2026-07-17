@@ -30,6 +30,42 @@ const checkoutSchema = z.object({
   paymentMethod: z.enum(["pix", "credit_card", "debit_card", "boleto"])
 });
 
+function getMercadoPagoError(error: unknown) {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  if (error && typeof error === "object") {
+    const response = error as {
+      message?: string;
+      error?: string;
+      status?: number;
+      cause?: unknown;
+    };
+
+    if (response.message) return response.message;
+    if (response.error) return response.error;
+
+    if (Array.isArray(response.cause)) {
+      return response.cause
+        .map((item) => {
+          if (item && typeof item === "object" && "description" in item) {
+            return String((item as { description: unknown }).description);
+          }
+
+          return String(item);
+        })
+        .join(" ");
+    }
+
+    if (response.cause && typeof response.cause === "object" && "message" in response.cause) {
+      return String((response.cause as { message: unknown }).message);
+    }
+  }
+
+  return "Mercado Pago recusou a criacao do pagamento.";
+}
+
 export async function POST(request: Request) {
   const payload = checkoutSchema.parse(await request.json());
   const orderId = `BG-${Date.now()}`;
@@ -85,6 +121,8 @@ export async function POST(request: Request) {
       redirectUrl: preference.init_point ?? "/pedido/pendente"
     });
   } catch (error) {
+    console.error("Mercado Pago checkout error", JSON.stringify(error, null, 2));
+
     if (!process.env.MERCADO_PAGO_ACCESS_TOKEN) {
       return NextResponse.json({
         orderId,
@@ -94,6 +132,6 @@ export async function POST(request: Request) {
       });
     }
 
-    return NextResponse.json({ error: error instanceof Error ? error.message : "Erro no pagamento." }, { status: 400 });
+    return NextResponse.json({ error: getMercadoPagoError(error) }, { status: 400 });
   }
 }
