@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { createCheckoutPreference } from "@/lib/mercado-pago";
+import { prisma } from "@/lib/prisma";
+import { products } from "@/data/products";
 
 const checkoutSchema = z.object({
   customer: z.object({
@@ -66,19 +68,95 @@ function getMercadoPagoError(error: unknown) {
   return "Mercado Pago recusou a criacao do pagamento.";
 }
 
+const paymentMethodMap = {
+  pix: "PIX",
+  credit_card: "CREDIT_CARD",
+  debit_card: "DEBIT_CARD",
+  boleto: "BOLETO"
+} as const;
+
+function toJsonValue<T>(value: T) {
+  return JSON.parse(JSON.stringify(value));
+}
+
 export async function POST(request: Request) {
   const payload = checkoutSchema.parse(await request.json());
   const orderId = `BG-${Date.now()}`;
   const description = `Pedido ${orderId} - Banzai Geek`;
+  const orderItems = await Promise.all(
+    payload.items.map(async (item) => {
+      const catalogProduct = products.find((product) => product.id === item.productId);
+      if (!catalogProduct) {
+        throw new Error(`Produto ${item.name} nao foi encontrado no catalogo.`);
+      }
 
-  // In production, persist Order and OrderItems with Prisma before creating payment.
-  // Webhooks update Orders.status and Payments.status after Mercado Pago confirmation.
+      const product = await prisma.product.findUnique({
+        where: { sku: catalogProduct.sku }
+      });
+
+      if (!product) {
+        throw new Error(`Produto ${catalogProduct.sku} nao foi encontrado no banco. Rode o seed antes de vender.`);
+      }
+
+      return {
+        productId: product.id,
+        name: item.name,
+        sku: catalogProduct.sku,
+        size: item.size,
+        color: item.color,
+        customization: `Estampa: ${item.printPlacement ?? "Frente"}`,
+        quantity: item.quantity,
+        unitPrice: item.price,
+        total: item.price * item.quantity
+      };
+    })
+  );
+
+  const order = await prisma.order.create({
+    data: {
+      number: orderId,
+      customerName: payload.customer.name,
+      email: payload.customer.email,
+      cpf: payload.customer.cpf || null,
+      cep: payload.customer.cep,
+      address: payload.customer.address,
+      numberAddress: payload.customer.numberAddress,
+      complement: payload.customer.complement || null,
+      neighborhood: payload.customer.neighborhood,
+      city: payload.customer.city,
+      state: payload.customer.state,
+      subtotal: payload.subtotal,
+      shipping: payload.shipping,
+      total: payload.total,
+      status: "AWAITING_PAYMENT",
+      items: {
+        create: orderItems
+      },
+      payments: {
+        create: {
+          method: paymentMethodMap[payload.paymentMethod],
+          status: "PENDING"
+        }
+      }
+    }
+  });
+
   try {
     const preference = await createCheckoutPreference({
       orderId,
       total: payload.total,
       description,
       payer: { name: payload.customer.name, email: payload.customer.email, cpf: payload.customer.cpf }
+    });
+
+    await prisma.payment.updateMany({
+      where: {
+        orderId: order.id,
+        providerPaymentId: null
+      },
+      data: {
+        rawResponse: toJsonValue(preference)
+      }
     });
 
     return NextResponse.json({
