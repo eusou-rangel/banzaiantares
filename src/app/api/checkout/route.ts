@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { createBoletoPayment, createCheckoutPreference, createPixPayment } from "@/lib/mercado-pago";
+import { createCheckoutPreference } from "@/lib/mercado-pago";
 
 const checkoutSchema = z.object({
   customer: z.object({
@@ -74,40 +74,6 @@ export async function POST(request: Request) {
   // In production, persist Order and OrderItems with Prisma before creating payment.
   // Webhooks update Orders.status and Payments.status after Mercado Pago confirmation.
   try {
-    if (payload.paymentMethod === "pix") {
-      const payment = await createPixPayment({
-        orderId,
-        total: payload.total,
-        description,
-        payer: { name: payload.customer.name, email: payload.customer.email, cpf: payload.customer.cpf }
-      });
-      const qr = payment.point_of_interaction?.transaction_data;
-
-      return NextResponse.json({
-        orderId,
-        status: payment.status,
-        qrCode: qr?.qr_code,
-        qrCodeBase64: qr?.qr_code_base64,
-        redirectUrl: payment.status === "approved" ? "/pedido/sucesso" : "/pedido/pendente"
-      });
-    }
-
-    if (payload.paymentMethod === "boleto") {
-      const payment = await createBoletoPayment({
-        orderId,
-        total: payload.total,
-        description,
-        payer: { name: payload.customer.name, email: payload.customer.email, cpf: payload.customer.cpf }
-      });
-
-      return NextResponse.json({
-        orderId,
-        status: payment.status,
-        boletoUrl: payment.transaction_details?.external_resource_url,
-        redirectUrl: "/pedido/pendente"
-      });
-    }
-
     const preference = await createCheckoutPreference({
       orderId,
       total: payload.total,
