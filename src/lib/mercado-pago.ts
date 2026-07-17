@@ -80,7 +80,15 @@ export async function createCheckoutPreference(input: PaymentInput) {
         pending: `${baseUrl}/pedido/pendente`,
         failure: `${baseUrl}/pedido/erro`
       },
+      notification_url: `${baseUrl}/api/payments/webhook`,
       auto_return: "approved"
     }
   });
+}
+
+export async function getMercadoPagoPayment(paymentId: string) {
+  if (!mercadoPagoClient) throw new Error("MERCADO_PAGO_ACCESS_TOKEN nao configurado.");
+  const payment = new Payment(mercadoPagoClient);
+
+  return payment.get({ id: paymentId });
 }
